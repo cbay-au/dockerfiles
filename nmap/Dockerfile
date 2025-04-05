@@ -1,7 +1,7 @@
 
 FROM debian:bullseye-slim
 
-LABEL maintainer="Your Name <your.email@example.com>"
+LABEL maintainer="Leighton linux@clucas.au"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends nmap && \
@@ -13,3 +13,6 @@ RUN mkdir -p /usr/share/nmap/nselib/ && \
     nmap --script-updatedb
 
 ENTRYPOINT ["/usr/bin/nmap"]
+
+# build docker image docker build -t nmap .
+# Run with docker run --rm nmap <nmap args> target

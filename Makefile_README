@@ -1,0 +1,31 @@
+
+Run Make Targets
+You can run specific targets by using the make command followed by the target name. For example:
+
+To build all containers: make build
+To run a specific service test: make SERVICE_NAME=<service_name> run
+To check code quality: make lint
+To remove temporary artifacts: make clean
+Here are some examples of running Make targets:
+
+# Build all containers
+make build
+
+# Run tests for a specific service (e.g., my_service)
+make SERVICE_NAME=my_service run
+
+# Check code quality
+make lint
+
+# Remove temporary artifacts
+make clean
+4. Display Available Targets
+To display the available targets in the Makefile, you can use the make help target:
+
+make help
+This will show a list of all the available targets and their descriptions.
+
+Tips and Variations
+You can run multiple targets at once by separating them with spaces: make build lint clean
+To see the detailed output of a target (without the @ symbol suppression), you can use the --verbose flag: make --verbose build
+If you have multiple Makefiles in your project, you can specify which one to use by providing its path: make -f /path/to/other/makefile build
