@@ -7,10 +7,7 @@
 #       wget https://raw.githubusercontent.com/cbay-au/dockerfiles/main/btop/Dockerfile
 #       Build btop image
 #       docker build -t btop .
-#       docker run -it --name btop btop:latest bash
-#	docker run -it -d --name btop btop:latest /bin/bash
-#	btop --utf-force
-#       test with <??>
+#       docker run -it --name btop btop
 # TODO:
 #       1.check wich is the lighest FROM to use
 #       2. chech line with ENV seems to be ussing a depreciated syntax
@@ -27,9 +24,16 @@
 # btop --utf-force
 #
 FROM ubuntu:latest
-LABEL maintainer="Leighton Clucas"
 
-RUN apt -y update && apt-get -y upgrade
-RUN apt install btop
+RUN apt update && apt upgrade -y
 
-CMD [ "btop" ]
+# Set locale
+RUN apt-get install -y locales
+RUN locale-gen en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+RUN apt install btop -y
+
+CMD ["btop"]
