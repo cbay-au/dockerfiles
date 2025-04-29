@@ -1,0 +1,59 @@
+# DESCRIPTION:           Create a container containing the hacking tools authored by Hakluke
+# AUTHOR:               Leighton <linux@clucas.au>
+# COMMENTS:
+#       Dockerfile builds a golang docker image within a bash shell contining:-
+#               - hakrawler
+# USAGE:
+#       Download Dockerfile
+#       wget https://raw.githubusercontent.com/cbay-au/dockerfiles/main/hakluke/Dockerfile
+#       Build image
+#       docker build -t hakluke .
+#       docker run ???
+# TODO:
+#       1.check wich is the lighest FROM to use
+#       2. chech line with ENV seems to be ussing a depreciated syntax
+#       3. add API kety for haktrails
+
+
+
+
+FROM debian:bookworm-slim
+
+LABEL maintainer="Leighton linux@clucas.au"
+
+RUN	apt-get update && \
+	apt-get install -y --no-install-recommends \
+	bash \
+	curl \
+	wget \
+	nano \
+	nmap \
+	build-essential \
+	ca-certificates \
+	autoconf \
+	automake \
+	libtool \
+	prips \
+	systemd \
+#	nordvpn \
+	iproute2 && \
+	rm -rf /var/lib/apt/lists/*
+
+# Install nordvpn
+RUN	sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) | yes | sh
+
+# Create a script to apply iptables rule
+RUN mkdir -p /etc/network/if-pre-up.d/ && \
+    echo "iptables -t nat -A POSTROUTING -s 5.8.1.0/24 -j MASQUERADE" > /etc/network/if-pre-up.d/masquerade
+
+# Set the container's internal IP address
+ENV INTERNAL_IP=5.8.1.100
+
+# Add a script to set the IP address when the container starts
+RUN mkdir -p /etc/network/if-up.d/ && \
+    echo "ip addr add $INTERNAL_IP/24 dev eth0" > /etc/network/if-up.d/set_ip
+
+# Make the scripts executable
+RUN chmod +x /etc/network/if-pre-up.d/masquerade /etc/network/if-up.d/set_ip
+
+# ENTRYPOINT ["/usr/bin/nmap"]

@@ -1,0 +1,33 @@
+# Multi-Stage Build: Download the script in a separate stage
+FROM debian:bookworm-slim AS downloader
+
+RUN apt-get update && \
+    echo "Installing curl..." && \
+    apt-get install -y --no-install-recommends curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+# Download the NordVPN installation script
+RUN curl -O https://downloads.nordcdn.com/apps/linux/install.sh
+
+# Multi-Stage Build: Install NordVPN in the final stage
+FROM debian:bookworm-slim
+
+COPY --from=downloader /install.sh /tmp/install.sh
+
+RUN apt-get update && \
+    echo "Installing necessary packages..." && \
+    apt-get install -y --no-install-recommends bash curl wget nano nmap build-essential ca-certificates autoconf automake libtool prips iproute2 apt-utils sudo && \
+    rm -rf /var/lib/apt/lists/* && \
+    # Make the script executable and run it with yes
+    yes | bash -c "chmod +x /tmp/install.sh && /tmp/install.sh" && \
+    # Clean up
+    rm /tmp/install.sh
+
+# Copy the entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /entrypoint.sh
+
+# Use the entrypoint script to start NordVPN and keep the container running
+ENTRYPOINT ["/entrypoint.sh"]

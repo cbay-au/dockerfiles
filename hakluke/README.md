@@ -1,45 +1,63 @@
-# Hakrawler
+
+# TO DO
+	1. sort out the volume path so my .env file is accessable to the container
+
+===================================================================
+
+# This Dockerfile is a collection of the repos crafted by hakluke https://github.com/hakluke?tab=repositories
+
+Build the image using;
+```
+cd /dockerfile/hakluke
+docker build -t hakluke .
+```
+Run using:
+```
+docker run -v /home/leigh/.env:/home/.env -it --name hakluke hakluke bash
+```
+
+===================================================================
+
+# The following repo's are included
+
+## Hakrawler	https://github.com/hakluke/hakrawler/blob/master/README.md
 
 Fast golang web crawler for gathering URLs and JavaScript file locations. This is basically a simple implementation of the awesome Gocolly library.
 
-## Example usages
+## Hakrevdns	https://github.com/hakluke/hakrevdns/blob/master/README.md
 
-Single URL:
+Small, fast, simple tool for performing reverse DNS lookups en masse.
 
-```
-echo https://google.com | hakrawler
-```
+You feed it IP addresses, it returns hostnames.
 
-Multiple URLs:
+This can be a useful way of finding domains and subdomains belonging to a company from their IP addresses.
 
-```
-cat urls.txt | hakrawler
-```
+## Haklistgen	https://github.com/hakluke/haklistgen/blob/main/README.md
 
-Timeout for each line of stdin after 5 seconds:
+Turns any junk text into a usable wordlist for brute-forcing.
 
-```
-cat urls.txt | hakrawler -timeout 5
-```
+## Hakoriginfinder	https://github.com/hakluke/hakoriginfinder/blob/main/README.md
 
-Send all requests through a proxy:
+Tool for discovering the origin host behind a reverse proxy. Useful for bypassing WAFs and other reverse proxies.
 
-```
-cat urls.txt | hakrawler -proxy http://localhost:8080
-```
+## hakcheckurl	https://github.com/hakluke/hakcheckurl/blob/master/README.md
 
-Include subdomains:
+Takes a list of URLs and returns their HTTP response codes. This tool is perfect for quickly determining the status of multiple web pages, especially when combined with other tools.
 
-```
-echo https://google.com | hakrawler -subs
-```
+This tool was written to be chained with hakrawler to easily check the response codes of discovered URLs.
 
-> Note: a common issue is that the tool returns no URLs. This usually happens when a domain is specified (https://example.com), but it redirects to a subdomain (https://www.example.com). The subdomain is not included in the scope, so the no URLs are printed. In order to overcome this, either specify the final URL in the redirect chain or use the `-subs` option to include subdomains.
+## Haktrails	https://github.com/hakluke/haktrails/blob/main/README.md
 
-## Example tool chain
+haktrails is a Golang client for querying SecurityTrails API data
 
-Get all subdomains of google, find the ones that respond to http(s), crawl them all.
+Need API key
 
-```
-echo google.com | haktrails subdomains | httpx | hakrawler
-```
+## Haktldextract	https://github.com/hakluke/haktldextract/blob/master/README.md
+
+Basic tool to extract domains/subdomains from URLs en masse
+
+## hakip2host	https://github.com/hakluke/hakip2host/blob/main/README.md
+
+hakip2host takes a list of IP addresses via stdin, then does a series of checks to return associated domain names.
+
+

@@ -1,22 +1,7 @@
-# Multi-Stage Build: Download the script in a separate stage
-FROM debian:bookworm-slim AS downloader
-
-RUN apt-get update && \
-    echo "Installing curl..." && \
-    apt-get install -y --no-install-recommends curl && \
-    echo "Installing ca-certificates..." && \
-    apt-get install -y --no-install-recommends ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
-
-# Download the NordVPN installation script
-RUN curl -O https://downloads.nordcdn.com/apps/linux/install.sh
-
-# Multi-Stage Build: Install NordVPN in the final stage
 FROM debian:bookworm-slim
 
-COPY --from=downloader /install.sh /tmp/install.sh
+LABEL maintainer="Leighton linux@clucas.au"
 
-# Install necessary packages and NordVPN
 RUN apt-get update && \
     echo "Installing bash..." && \
     apt-get install -y --no-install-recommends bash && \
@@ -40,17 +25,73 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends libtool && \
     echo "Installing prips..." && \
     apt-get install -y --no-install-recommends prips && \
+    echo "Installing systemd..." && \
+    apt-get install -y --no-install-recommends systemd && \
     echo "Installing iproute2..." && \
     apt-get install -y --no-install-recommends iproute2 && \
     echo "Installing apt-utils..." && \
     apt-get install -y --no-install-recommends apt-utils && \
     rm -rf /var/lib/apt/lists/*
 
-# Install NordVPN
-RUN  yes | bash -c "chmod +x /tmp/install.sh && /tmp/install.sh"
+# Multi-Stage Build: Download the script in a separate stage
+FROM debian:bookworm-slim AS downloader
 
-# Create an entrypoint script to start the NordVPN service
-COPY entrypoint.sh /
+RUN apt-get update && \
+    echo "Installing curl..." && \
+    apt-get install -y --no-install-recommends curl && \
+    echo "Installing ca-certificates..." && \
+    apt-get install -y --no-install-recommends ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+# Download the NordVPN installation script
+RUN curl -O https://downloads.nordcdn.com/apps/linux/install.sh
+
+# Multi-Stage Build: Install NordVPN in the final stage
+FROM debian:bookworm-slim
+
+COPY --from=downloader /install.sh /tmp/install.sh
+
+RUN apt-get update && \
+    echo "Installing bash..." && \
+    apt-get install -y --no-install-recommends bash && \
+    echo "Installing curl..." && \
+    apt-get install -y --no-install-recommends curl && \
+    echo "Installing wget..." && \
+    apt-get install -y --no-install-recommends wget && \
+    echo "Installing nano..." && \
+    apt-get install -y --no-install-recommends nano && \
+    echo "Installing nmap..." && \
+    apt-get install -y --no-install-recommends nmap && \
+    echo "Installing build-essential..." && \
+    apt-get install -y --no-install-recommends build-essential && \
+    echo "Installing ca-certificates..." && \
+    apt-get install -y --no-install-recommends ca-certificates && \
+    echo "Installing autoconf..." && \
+    apt-get install -y --no-install-recommends autoconf && \
+    echo "Installing automake..." && \
+    apt-get install -y --no-install-recommends automake && \
+    echo "Installing libtool..." && \
+    apt-get install -y --no-install-recommends libtool && \
+    echo "Installing prips..." && \
+    apt-get install -y --no-install-recommends prips && \
+    echo "Installing systemd..." && \
+    apt-get install -y --no-install-recommends systemd && \
+    echo "Installing iproute2..." && \
+    apt-get install -y --no-install-recommends iproute2 && \
+    echo "Installing apt-utils..." && \
+    apt-get install -y --no-install-recommends apt-utils && \
+    rm -rf /var/lib/apt/lists/*
+
+# Make the script executable and run it with yes
+#RUN chmod +x /tmp/install.sh && /tmp/install.sh | yes
+RUN  yes | bash -c "chmod +x /tmp/install.sh && /tmp/install.sh"
+#RUN  /etc/init.d/nordvpn start
+
+# Copy entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+
+# Set permissions for the entrypoint script
 RUN chmod +x /entrypoint.sh
 
+# Use the entrypoint to initialize and start NordVPN
 ENTRYPOINT ["/entrypoint.sh"]

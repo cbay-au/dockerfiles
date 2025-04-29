@@ -6,16 +6,14 @@
 # USAGE:
 #	Download Dockerfile
 #	wget https://raw.githubusercontent.com/cbay-au/dockerfiles/main/hakluke/Dockerfile
-#	Build golang image
-#	docker build -t golang .
-# 	docker run -it golang:latest bash
-# 	test with <go version> 
+#	Build image
+#	docker build -t hakluke .
+# 	docker run ???
 # TODO:
 # 	1.check wich is the lighest FROM to use	
 #	2. chech line with ENV seems to be ussing a depreciated syntax
 #	3. add API kety for haktrails
 
-#FROM ubuntu:latest
 FROM debian:bookworm-slim
 
 # Update and install necessary packages
