@@ -1,0 +1,4 @@
+Protected S3 Bucket: http://backupcbay.s3.amazonaws.com/
+Registered Azure Virtual Machine DNS Name: cbayweb.eastus.cloudapp.azure.com
+Protected Google Firebase RTDB: https://cbay-2018.firebaseio.com/.json
+Protected Google Firebase RTDB: https://cbayapp.firebaseio.com/.json

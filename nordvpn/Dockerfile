@@ -8,16 +8,20 @@
 # USAGE:
 #       Download Dockerfile
 #       	wget https://raw.githubusercontent.com/cbay-au/dockerfiles/main/nordvpn/Dockerfile
-#       Build golang image
+#       Build image
 #       	docker build -t nvpn .
-#	Run Image
-#		 docker run -it --hostname nvpn --cap-add=NET_ADMIN --sysctl net.ipv6.conf.all.disable_ipv6=0 nvpn
+#	Build container
+#		superseeded -->> docker run -it --hostname nvpn --cap-add=NET_ADMIN --sysctl net.ipv6.conf.all.disable_ipv6=0 nvpn
+#		docker run -it --hostname nvpn --name nvpn -v /home/leigh/.env:/.env --cap-add=NET_ADMIN --sysctl net.ipv6.conf.all.disable_ipv6=0 nvpn
+#			This will give root access to the container
+#			The v flag will give access to the host .env file with the login token for Nordvpn.
 #	Login
-#		nordvpn login --token e9f2abc22f8<need to get own token>
-#       	nordvpn connect
+#		From root access enter . / entrypoint.sh to source the .env file, log into Nordvpn and double connect
+#       	
 # TODO:
-#       1.check wich is the lighest FROM to use
-#       2. chech line with ENV seems to be ussing a depreciated syntax
+#       1.check wich is the lighest FROM to use - can the image size be reduced.
+#       2.sort out warning on image build
+#	3. add aliases to bashrc
 
 
 FROM ubuntu:24.04
@@ -37,6 +41,9 @@ RUN apt-get update && \
         prips \
         systemd \
         iproute2 \
+        swaks \
+        dnsutils \
+        whois \
         apt-utils && \
     # Add NordVPN repository
     wget -qO /etc/apt/trusted.gpg.d/nordvpn_public.asc https://repo.nordvpn.com/gpg/nordvpn_public.asc && \
@@ -61,7 +68,7 @@ RUN mkdir -p /usr/share/nmap/nselib/ && \
 COPY entrypoint.sh /entrypoint.sh
 COPY README /READMEto
 #COPY ~/home/leigh/.env /.env
-RUN echo "$NORDVPN_TOKEN" >> /entrypoint.sh
+#RUN echo "$NORDVPN_TOKEN" >> /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 

@@ -1,0 +1,8 @@
+
+; <<>> DiG 9.19.21-1-Debian <<>> axfr cbay.au @ns1.crazydomains.com.
+;; global options: +cmd
+; Transfer failed.
+
+; <<>> DiG 9.19.21-1-Debian <<>> axfr cbay.au @ns2.crazydomains.com.
+;; global options: +cmd
+; Transfer failed.

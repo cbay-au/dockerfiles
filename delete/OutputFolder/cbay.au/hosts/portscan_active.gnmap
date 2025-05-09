@@ -1,0 +1,6 @@
+# Nmap 7.94SVN scan initiated Tue May  6 00:44:23 2025 as: nmap --top-ports 200 -sV -n -Pn --open --max-retries 2 --script vulners -iL .tmp/ips_nocdn.txt -oA hosts/portscan_active
+Host: 185.199.108.153 ()	Status: Up
+Host: 185.199.108.153 ()	Ports: 53/open/tcp//domain//Unbound/, 80/open/tcp//http//GitHub.com/, 443/open/tcp//ssl|https//GitHub.com/, 5060/open/tcp//sip?///, 8080/open/tcp//http-proxy?///	Ignored State: filtered (195)
+Host: 185.199.109.153 ()	Status: Up
+Host: 185.199.109.153 ()	Ports: 53/open/tcp//domain//Unbound/, 80/open/tcp//http//GitHub.com/, 443/open/tcp//ssl|https//GitHub.com/, 5060/open/tcp//sip?///, 8080/open/tcp//http-proxy?///	Ignored State: filtered (195)
+# Nmap done at Tue May  6 00:47:44 2025 -- 2 IP addresses (2 hosts up) scanned in 201.48 seconds

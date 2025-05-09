@@ -1,0 +1,6 @@
+[waf-detect:varnish] [http] [info] https://www.cbay.au
+[waf-detect:varnish] [http] [info] https://www.cbay.au
+[tls-version] [ssl] [info] www.cbay.au:443 ["tls12"]
+[tls-version] [ssl] [info] www.cbay.au:443 ["tls12"]
+[tls-version] [ssl] [info] www.cbay.au:443 ["tls13"]
+[tls-version] [ssl] [info] www.cbay.au:443 ["tls13"]

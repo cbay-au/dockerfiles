@@ -1,0 +1,41 @@
+Domain Name: cbay.au
+Registry Domain ID: 9c95c8bce0044666989831bbf363717d-AU
+Registrar WHOIS Server: whois.auda.org.au
+Registrar URL: https://www.crazydomains.com.au/contact/
+Last Modified: 2025-04-05T09:11:48Z
+Registrar Name: Web Address Registration Pty Ltd
+Registrar Abuse Contact Email: registry@dreamscapenetworks.com
+Registrar Abuse Contact Phone: +1.1234567890
+Reseller Name: 
+Status: serverRenewProhibited https://identitydigital.au/get-au/whois-status-codes#serverRenewProhibited
+Status Reason: Not Currently Eligible For Renewal
+Registrant Contact ID: 6ccf63b2e23f4ec990966de3541c4568-AU
+Registrant Contact Name: Joanna Louise Massey
+Tech Contact ID: 3eee493df49a4b11a973b72b8790cf19-AU
+Tech Contact Name: Joanna Louise Massey
+Name Server: ns1.crazydomains.com
+Name Server: ns2.crazydomains.com
+DNSSEC: unsigned
+Registrant: MASSEY, JOANNA LOUISE
+Registrant ID: ABN 31278310381
+Eligibility Type: Sole Trader
+>>> Last update of WHOIS database: 2025-05-06T04:32:05Z <<<
+
+Identity Digital Australia Pty Ltd, for itself and on behalf of .au Domain Administration Limited (auDA), makes the WHOIS registration data directory service (WHOIS Service) available solely for the purposes of:
+
+(a) querying the availability of a domain name licence;
+
+(b) identifying the holder of a domain name licence; and/or
+
+(c) contacting the holder of a domain name licence in relation to that domain name and its use.
+
+The WHOIS Service must not be used for any other purpose (even if that purpose is lawful), including:
+
+(a) aggregating, collecting or compiling information from the WHOIS database, whether for personal or commercial purposes;
+
+(b) enabling the sending of unsolicited electronic communications; and / or
+
+(c) enabling high volume, automated, electronic processes that send queries or data to the systems of Afilias, any registrar, any domain name licence holder, or auDA.
+
+The WHOIS Service is provided for information purposes only. By using the WHOIS Service, you agree to be bound by these terms and conditions. The WHOIS Service is operated in
+accordance with the auDA WHOIS Policy (available at https://www.auda.org.au/policy/2014-07-whois-policy).

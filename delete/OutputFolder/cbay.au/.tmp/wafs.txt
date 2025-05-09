@@ -1,0 +1,2 @@
+       https://cbay.au   https://cbay.au/?whnttcre=%3Cscript%3Ealert%28%22XSS%22%29%3B%3C%2Fscript%3E&vmjsqpfw=UNION+SELECT+ALL+FROM+information_schema+AND+%27+or+SLEEP%285%29+or+%27&aaluzowm=..%2F..%2F..%2F..%2Fetc%2Fpasswd (Fastly)   Fastly
+   https://www.cbay.au   https://cbay.au/?mbeanprx=%3Cscript%3Ealert%28%22XSS%22%29%3B%3C%2Fscript%3E&ncgonvyt=UNION+SELECT+ALL+FROM+information_schema+AND+%27+or+SLEEP%285%29+or+%27&aebllbul=..%2F..%2F..%2F..%2Fetc%2Fpasswd (Fastly)   Fastly

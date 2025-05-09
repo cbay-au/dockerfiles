@@ -1,0 +1,4 @@
+[+] got 6 tokens and 30 dorks
+
+error: https://docs.github.com/rest ; and we need wait 20s
+Too many errors, auto stop
