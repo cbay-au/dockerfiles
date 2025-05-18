@@ -1,4 +1,0 @@
-https://cbay.au [200] [cbay.au] [GitHub.com] ["Fastly","GitHub Pages","HSTS","Varnish"]
-https://cbay.au [200] [cbay.au] [GitHub.com] null
-https://www.cbay.au [301] [301 Moved Permanently] [GitHub.com] null
-https://www.cbay.au [301] [301 Moved Permanently] [GitHub.com] ["Fastly","GitHub Pages","Varnish"]
